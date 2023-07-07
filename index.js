@@ -5,7 +5,7 @@ const onLoad = () => {
 
 const onInput = (input) => {
 	const progressBar = document.getElementById('progress-bar');
-	progressBar.value = progressBar.value + 1;
+	progressBar.value = input.target.value.length * 5;
 };
 
 document.addEventListener('DOMContentLoaded', onLoad);
