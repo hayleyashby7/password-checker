@@ -1,3 +1,6 @@
+const SHORT = 0;
+const OK = 1;
+
 const onLoad = () => {
 	const password = document.getElementById('password');
 	password.addEventListener('input', onInput);
@@ -10,19 +13,31 @@ const onInput = (input) => {
 	const progressBar = document.getElementById('progress-bar');
 	progressBar.value = input.target.value.length * 5;
 
-	if (validatePassword(input.target.value)) {
-		updateProgressBar('', 'short');
-		updateFeedback('');
-	} else {
-		shortPassword();
+	switch (validatePassword(input.target.value)) {
+		case SHORT:
+			shortPassword();
+			break;
+		case OK:
+			okPassword();
+			break;
+		default:
+			break;
 	}
 };
 
-const validatePassword = (password) => password.length >= 8;
+const validatePassword = (password) => {
+	if (password.length < 8) return SHORT;
+	if (password.length < 12) return OK;
+};
 
 const shortPassword = () => {
 	updateProgressBar('short');
 	updateFeedback('Should be longer');
+};
+
+const okPassword = () => {
+	updateProgressBar('ok', 'short');
+	updateFeedback('Pretty good');
 };
 
 const updateFeedback = (message) => {

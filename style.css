@@ -29,3 +29,13 @@
 	background-color: red;
 	border-radius: 2px;
 }
+
+.ok::-webkit-progress-value {
+	background-color: orange;
+	border-radius: 2px;
+}
+
+.ok::-moz-progress-bar {
+	background-color: orange;
+	border-radius: 2px;
+}
