@@ -10,16 +10,6 @@
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
-.progress::-webkit-progress-value {
-	background-color: green;
-	border-radius: 2px;
-}
-
-.progress::-moz-progress-bar {
-	background-color: green;
-	border-radius: 2px;
-}
-
 .short::-webkit-progress-value {
 	background-color: red;
 	border-radius: 2px;
@@ -37,5 +27,15 @@
 
 .ok::-moz-progress-bar {
 	background-color: orange;
+	border-radius: 2px;
+}
+
+.great::-webkit-progress-value {
+	background-color: green;
+	border-radius: 2px;
+}
+
+.great::-moz-progress-bar {
+	background-color: green;
 	border-radius: 2px;
 }
