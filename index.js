@@ -1,5 +1,6 @@
 const SHORT = 0;
 const OK = 1;
+const GREAT = 2;
 
 const onLoad = () => {
 	const password = document.getElementById('password');
@@ -20,6 +21,9 @@ const onInput = (input) => {
 		case OK:
 			okPassword();
 			break;
+		case GREAT:
+			greatPassword();
+			break;
 		default:
 			break;
 	}
@@ -28,6 +32,7 @@ const onInput = (input) => {
 const validatePassword = (password) => {
 	if (password.length < 8) return SHORT;
 	if (password.length < 12) return OK;
+	return GREAT;
 };
 
 const shortPassword = () => {
@@ -38,6 +43,11 @@ const shortPassword = () => {
 const okPassword = () => {
 	updateProgressBar('ok', 'short');
 	updateFeedback('Pretty good');
+};
+
+const greatPassword = () => {
+	updateProgressBar('great', 'ok');
+	updateFeedback('Grrrreat!');
 };
 
 const updateFeedback = (message) => {
