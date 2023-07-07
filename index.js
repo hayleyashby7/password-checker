@@ -11,12 +11,37 @@ const onInput = (input) => {
 	progressBar.value = input.target.value.length * 5;
 
 	if (validatePassword(input.target.value)) {
-		progressBar.classList.remove('short');
+		updateProgressBar('', 'short');
+		updateFeedback('');
 	} else {
-		if (!progressBar.classList.contains('short')) progressBar.classList.add('short');
+		shortPassword();
+	}
+};
+
+const validatePassword = (password) => password.length >= 8;
+
+const shortPassword = () => {
+	updateProgressBar('short');
+	updateFeedback('Should be longer');
+};
+
+const updateFeedback = (message) => {
+	const feedback = document.getElementById('feedback');
+	if (feedback.innerText !== message) feedback.innerText = message;
+};
+
+const updateProgressBar = (addValue = '', removeValue = '') => {
+	if (addValue === '' && removeValue === '') return;
+
+	const progressBar = document.getElementById('progress-bar');
+
+	if (addValue !== '') {
+		if (!progressBar.classList.contains(addValue)) progressBar.classList.add(addValue);
+	}
+
+	if (removeValue !== '') {
+		if (progressBar.classList.contains(removeValue)) progressBar.classList.remove(removeValue);
 	}
 };
 
 document.addEventListener('DOMContentLoaded', onLoad);
-
-const validatePassword = (password) => password.length >= 8;
