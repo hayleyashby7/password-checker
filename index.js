@@ -36,17 +36,17 @@ const validatePassword = (password) => {
 };
 
 const shortPassword = () => {
-	updateProgressBar('short');
+	updateProgressBar('short', ['ok', 'great']);
 	updateFeedback('Should be longer');
 };
 
 const okPassword = () => {
-	updateProgressBar('ok', 'short');
+	updateProgressBar('ok', ['short', 'great']);
 	updateFeedback('Pretty good');
 };
 
 const greatPassword = () => {
-	updateProgressBar('great', 'ok');
+	updateProgressBar('great', ['short', 'ok']);
 	updateFeedback('Grrrreat!');
 };
 
@@ -55,8 +55,8 @@ const updateFeedback = (message) => {
 	if (feedback.innerText !== message) feedback.innerText = message;
 };
 
-const updateProgressBar = (addValue = '', removeValue = '') => {
-	if (addValue === '' && removeValue === '') return;
+const updateProgressBar = (addValue = '', removeValues = []) => {
+	if (addValue === '' && removeValues === []) return;
 
 	const progressBar = document.getElementById('progress-bar');
 
@@ -64,8 +64,10 @@ const updateProgressBar = (addValue = '', removeValue = '') => {
 		if (!progressBar.classList.contains(addValue)) progressBar.classList.add(addValue);
 	}
 
-	if (removeValue !== '') {
-		if (progressBar.classList.contains(removeValue)) progressBar.classList.remove(removeValue);
+	if (removeValues !== []) {
+		removeValues.forEach((removeValue) => {
+			if (progressBar.classList.contains(removeValue)) progressBar.classList.remove(removeValue);
+		});
 	}
 };
 
